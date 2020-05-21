@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-md-4">
+    <form action="/send-sms" method="POST" class="card card-body">
+      <div class="form-group">
+        <label for=""></label>
+        <input
+          type="text"
+          name="message"
+          id=""
+          class="form-control"
+          placeholder="Write your message"
+          autofocus
+        />
+        <small class="text-muted">
+          Help text
+        </small>
+      </div>
+      <div class="form-group">
+        <label for=""></label>
+        <input
+          type="tel"
+          name="phone"
+          id=""
+          class="form-control"
+          placeholder="+50212345678"
+          autocomplete="off"
+        />
+        <small class="text-muted">
+          Help text
+        </small>
+      </div>
+      <button class="btn btn-primary btn-block">
+        Send
+      </button>
+    </form>
+  </div>
+  <div class="col-md-8">
+    {{#if messages}}
+      <ul
+        class="list-group"
+        style="height: 70vh; overflow-y: auto;"
+        id="messages"
+      >
+        {{#each messages}}
+          <li
+            class="list-group-item list-group-item-info list-group-item-action"
+          >
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">
+                {{Body}}
+              </h5>
+              <small>
+                {{timeago createdAt}}
+              </small>
+            </div>
+            <span>
+              To:
+              {{hideNumber To}}
+            </span>
+            <span>
+              From:
+              {{hideNumber From}}
+            </span>
+            <br />
+            <small>
+              ID:
+              {{_id}}
+            </small>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p>
+        No messages yet
+      </p>
+    {{/if}}
+  </div>
+</div>
